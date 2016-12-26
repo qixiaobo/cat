@@ -32,7 +32,7 @@
 						<b class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 					<ul class="submenu">
-						<li id="dashbord_system"><a href="/cat/r/top?op=view&domain=${model.domain}">
+						<li id="dashbord_system"><a href="/cat/r/top?op=${payload.action.name}&domain=${model.domain}">
 							<i class="menu-icon fa fa-caret-right"></i>报错大盘</a>
 							<b class="arrow"></b></li>
 						<li id="dashbord_metric"><a href="/cat/r/metric?op=dashboard&domain=${model.domain}">
@@ -83,7 +83,8 @@
 						<li id="cache_operation"><a href="/cat/r/storage?id=memcached&type=Cache&domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}">
 							<i class="menu-icon fa fa-caret-right"></i>访问趋势</a>
 							<b class="arrow"></b></li>
-						<li id="cache_info"><a href="/cat/r/cache?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}&op=view">
+						<li id="cache_info"><a
+								href="/cat/r/cache?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}&op=${payload.action.name}">
 							<i class="menu-icon fa fa-caret-right"></i>访问情况</a>
 							<b class="arrow"></b></li>
 					</ul>
@@ -95,18 +96,119 @@
 						<li id="database_operation"><a href="/cat/r/storage?id=cat&domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}">
 							<i class="menu-icon fa fa-caret-right"></i>访问趋势</a>
 							<b class="arrow"></b></li>
-						<li id="database_system"><a href="/cat/r/database?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}&op=view">
+						<li id="database_system"><a
+								href="/cat/r/database?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}&op=${payload.action.name}">
 							<i class="menu-icon fa fa-caret-right"></i>系统指标</a>
 							<b class="arrow"></b></li>
 					</ul>
 				</li>
+				<li id="Dependency_report" class="hsub"><a
+						href="/cat/r/dependency?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}&op=${payload.action.name}"
+						class="dropdown-toggle"> <i class="menu-icon glyphicon glyphicon-road"></i> <span
+						class="menu-text">Dependency</span>
+					<b class="arrow fa fa-angle-down"></b>
+				</a> <b class="arrow"></b>
+					<ul class="submenu">
+						<li id="dependency_dashboard"><a
+								href="/cat/r/dependency?op=dashboard&domain=${model.domain}&date=${model.date}">
+							<i class="menu-icon fa fa-caret-right"></i>综合大盘</a>
+							<b class="arrow"></b></li>
+						<li id="dependency_trend"><a
+								href="/cat/r/dependency?op=lineChart&domain=${model.domain}&date=${model.date}">
+							<i class="menu-icon fa fa-caret-right"></i>趋势图</a>
+							<b class="arrow"></b></li>
+						<li id="dependency_topo"><a
+								href="/cat/r/dependency?op=dependencyGraph&domain=${model.domain}&date=${model.date}">
+							<i class="menu-icon fa fa-caret-right"></i>拓扑图</a>
+							<b class="arrow"></b></li>
+
+					</ul>
+				</li>
+				<li id="Matrix_report">
+					<a href="/cat/r/matrix?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=day&op=${payload.action.name}">
+						<i class="menu-icon  fa  fa-flask"></i>
+						<span class="menu-text">Matrix</span>
+					</a>
+				</li>
 				<li id="State_report" >
-					<a href="/cat/r/state?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}&op=${payload.action.name}">
+					<a href="/cat/r/state?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=day&op=${payload.action.name}">
 						<i class="menu-icon fa fa-bar-chart-o"></i>
 						<span class="menu-text">State</span>
 					</a>
 				</li>
-				</ul>
+				<li id="Offline_report" class="hsub"><a href="#" class="dropdown-toggle"> <i
+						class="menu-icon fa fa-film"></i> <span class="menu-text">Offline</span>
+					<b class="arrow fa fa-angle-down"></b>
+				</a> <b class="arrow"></b>
+					<ul class="submenu">
+						<li id="overload_report">
+							<a href="/cat/r/overload?domain=${model.domain}&op=${payload.action.name}">
+								<i class="menu-icon  fa  fa-flask"></i>
+								<span class="menu-text">报表容量统计</span>
+							</a>
+						</li>
+						<li id="service_report">
+							<a href="/cat/r/statistics?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&op=service">
+								<i class="menu-icon glyphicon glyphicon-check"></i>
+								<span class="menu-text">服务可用排行</span>
+							</a>
+						</li>
+						<li id="client_report">
+							<a href="/cat/r/statistics?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&op=client">
+								<i class="menu-icon fa  fa-exchange"></i>
+								<span class="menu-text">服务调用排行</span>
+							</a>
+						</li>
+						<li id="utilization_report">
+							<a href="/cat/r/statistics?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&op=utilization">
+								<i class="menu-icon  fa fa-glass"></i>
+								<span class="menu-text">线上容量规划</span>
+							</a>
+						</li>
+						<li id="jar_report">
+							<a href="/cat/r/statistics?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&op=jar">
+								<i class="menu-icon  fa fa-briefcase"></i>
+								<span class="menu-text">线上JAR版本</span>
+							</a>
+						</li>
+						<li id="heavy_report">
+							<a href="/cat/r/statistics?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&op=heavy">
+								<i class="menu-icon  fa fa-circle"></i>
+								<span class="menu-text">重量访问排行</span>
+							</a>
+						</li>
+						<li id="summary_report">
+							<a href="/cat/r/statistics?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&op=summary">
+								<i class="menu-icon  fa fa-lightbulb-o"></i>
+								<span class="menu-text">告警智能分析</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li id="System_report" class="hsub"><a href="#" class="dropdown-toggle"> <i
+						class="menu-icon fa fa-gavel"></i> <span class="menu-text">System</span>
+					<b class="arrow fa fa-angle-down"></b>
+				</a> <b class="arrow"></b>
+					<ul class="submenu">
+						<li id="system_network"><a
+								href="/cat/r/network?op=metric&product=&domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=day&op=${payload.action.name}">
+							<i class="menu-icon fa fa-caret-right"></i>网络监控</a>
+							<b class="arrow"></b></li>
+						<li id="system_paas"><a
+								href="/cat/r/system?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=day&op=${payload.action.name}">
+							<i class="menu-icon fa fa-caret-right"></i>PAAS监控</a>
+							<b class="arrow"></b></li>
+						<li id="system_alteration"><a
+								href="/cat/r/alteration?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=day&op=${payload.action.name}">
+							<i class="menu-icon fa fa-caret-right"></i>线上变更</a>
+							<b class="arrow"></b></li>
+						<li id="system_alert"><a href="/cat/r/alert?domain=${model.domain}&op=${payload.action.name}">
+							<i class="menu-icon fa fa-caret-right"></i>告警信息</a>
+							<b class="arrow"></b></li>
+					</ul>
+				</li>
+
+			</ul>
 			</ul>
 			<!-- #section:basics/sidebar.layout.minimize -->
 			<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
