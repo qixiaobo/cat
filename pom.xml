@@ -271,16 +271,16 @@ encoding/<project>=UTF-8
          <url>http://unidal.org/nexus/content/repositories/releases/</url>
       </pluginRepository>
    </pluginRepositories>
-   <distributionManagement>
-      <repository>
-         <id>releases</id>
-         <url>${releases.repo}</url>
-      </repository>
-      <snapshotRepository>
-         <id>snapshots</id>
-         <url>${snapshots.repo}</url>
-      </snapshotRepository>
-   </distributionManagement>
+	<distributionManagement>
+		<repository>
+			<id>nexus-snapshots</id>
+			<url>http://192.168.1.232:8080/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-releases</id>
+			<url>http://192.168.1.232:8080/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<properties>
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
 	</properties>
